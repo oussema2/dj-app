@@ -2,6 +2,7 @@ import React from "react";
 import "./fonts/Sofia_Pro_SemiBold.ttf";
 import "./fonts/Sofia_Pro_Regular.ttf";
 import "./fonts/Sofia_Pro_Light.ttf";
+import "./fonts/Sofia_Pro_Bold.ttf";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
