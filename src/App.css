@@ -878,6 +878,16 @@
   align-items: center;
   display: flex;
 }
+.icon-prev {
+  align-items: center;
+  display: flex;
+  transform: rotate(90deg);
+}
+.icon-next {
+  align-items: center;
+  display: flex;
+  transform: rotate(-90deg);
+}
 .about-dj-text-maximise {
   max-height: 100%;
 }
@@ -976,6 +986,356 @@
   justify-content: space-evenly;
   flex-direction: row;
 }
+
+.reserve-dj-top {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding: 0px 20px;
+  height: 114px;
+  background-image: linear-gradient(
+    79deg,
+    rgb(67, 109, 241) 28%,
+    rgb(135, 171, 255) 98%
+  );
+  text-align: center;
+  color: rgb(255, 255, 255);
+  height: 214px;
+}
+.inscri-dj-top {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding: 0px 20px;
+  height: 114px;
+  background-image: url(https://dd86mil3sc3or.cloudfront.net/6.1.0.909/assets/www/images/img-signup-hero.png?fbclid=IwAR0lCzs_TbfOFxZA7VadgO5umB4UT1s5pmmiSUui6dlcr7I6TOzSVXhS9cw);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  height: 214px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.reserve-dj-top-description {
+  font-family: SofiaPro-Semibold, sans-serif;
+  display: block;
+  font-size: 20px;
+}
+.reserve-dj-top-title {
+  font-size: 60px;
+  font-family: SofiaPro-Bold, sans-serif;
+  font-weight: 300;
+  margin: 0px;
+  letter-spacing: 0.74px;
+  text-transform: lowercase;
+}
+
+.reserve-stepper-prevBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1947d9;
+  padding: 18px;
+  font-size: 18px;
+  line-height: 18px;
+  text-decoration: none;
+  width: 215px;
+  margin-top: 0px;
+  font-family: SofiaPro-Semibold, sans-serif;
+  font-weight: 400;
+  margin-bottom: 0px;
+  letter-spacing: 0.2px;
+  text-transform: capitalize;
+  border: 2px solid #1947d9;
+  background-color: #ffffff;
+}
+.reserve-stepper-nextBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 18px;
+  font-size: 18px;
+  line-height: 18px;
+  text-decoration: none;
+  width: 215px;
+  margin-top: 0px;
+  font-family: SofiaPro-Semibold, sans-serif;
+  font-weight: 400;
+  margin-bottom: 0px;
+  letter-spacing: 0.2px;
+  text-transform: capitalize;
+  background-color: #1947d9;
+  border: none;
+  outline: none;
+
+  text-align: center;
+}
+.reserve-stepper-nextBtn:hover {
+  background-color: #1e41b4;
+}
+.reserve-stepper-prevBtn:hover {
+  background-color: rgba(25, 71, 217, 0.2);
+}
+.btns-stepper-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.stepper-container {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.reserve-step1-youve-select {
+  color: #797a7c;
+  margin: 24px 0 16px 0;
+  display: block;
+  font-size: 14px;
+  font-family: SofiaPro-Regular, sans-serif;
+  font-weight: 600;
+  padding-left: 12px;
+  letter-spacing: normal;
+}
+
+.dj-pic-reserve {
+  width: auto;
+  height: auto;
+  margin: auto;
+  max-width: 100%;
+  align-self: center;
+  max-height: 100%;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+.dj-name-reserve {
+  color: #1c1c1c;
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  font-family: SofiaPro-Regular, sans-serif;
+  line-height: 1.1;
+  margin-top: 28px;
+  font-weight: 400;
+  margin-bottom: 24px;
+  letter-spacing: 0em;
+  margin-block-start: 0.3em;
+  margin-block-end: 0.3em;
+}
+
+.dj-location-reserve {
+  color: #1c1c1c;
+  margin: 0;
+  font-size: 12px;
+  font-family: SofiaPro-Regular, sans-serif;
+  line-height: 1.5;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 0.00938em;
+  margin-block-start: 0.3em;
+  margin-block-end: 0.3em;
+}
+
+.dj-details-container {
+  margin-left: 10px;
+}
+.step1-top-inputs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.dj-container-reserve {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1;
+  width: 100%;
+}
+
+.dj-pic-detail-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.dj-pic-container {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropDownData-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* position: relative; */
+}
+.reserce-service-requested-input {
+  flex: 1;
+}
+
+.dropDown-container {
+  width: 100%;
+  display: block;
+  padding: 16px 52px 16px 14px;
+  border: 1px solid rgb(208, 208, 208);
+  position: relative;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: #333;
+  cursor: default;
+  outline: none;
+  transition: all 0.2s ease;
+}
+.dropDown-value {
+  font-size: 15px;
+  color: rgb(121, 122, 124);
+  font-family: SofiaPro-Regular, sans-serif;
+}
+.dateInput-value {
+  font-size: 15px;
+  color: rgb(121, 122, 124);
+  font-family: SofiaPro-Regular, sans-serif;
+  padding-left: 30px;
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+.inputEl {
+  font-size: 15px;
+  color: rgb(121, 122, 124);
+  font-family: SofiaPro-Regular, sans-serif;
+  padding-left: 5px;
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+input[type="date"]::-webkit-clear-button {
+  -webkit-appearance: none;
+  display: none;
+}
+.dropDown-arrow {
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-image: initial;
+  width: 26px;
+  height: 100%;
+  top: 0px;
+  border-left: 1px solid rgb(208, 208, 208);
+  content: " ";
+  display: block;
+  position: absolute;
+  right: 10px;
+}
+
+.dropDown-arrow::after {
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-image: initial;
+  width: 26px;
+  height: 100%;
+  top: 24px;
+  content: " ";
+  display: block;
+  position: absolute;
+  left: 13px;
+  background: url(https://dd86mil3sc3or.cloudfront.net/6.1.0.907/assets/www/images/icon-caret.svg)
+    no-repeat;
+}
+.dateInput-logo {
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-image: initial;
+  width: 26px;
+  height: 100%;
+  top: 0px;
+  content: " ";
+  display: block;
+  position: absolute;
+  left: 10px;
+  background: url(https://dd86mil3sc3or.cloudfront.net/6.1.0.907/assets/www/images/icon-calendar.svg)
+    no-repeat;
+  margin-top: 15px;
+}
+
+.dropDown-title {
+  display: block;
+  font-family: SofiaPro-Regular, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(121, 122, 124);
+  margin: 24px 0 16px 0;
+  letter-spacing: normal;
+  text-transform: uppercase;
+}
+.dropDown-data-container {
+  width: 99.9%;
+  position: absolute;
+  height: 250px;
+  top: 0px;
+  border: 1px solid rgb(208, 208, 208);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: scroll;
+  z-index: 9999;
+  background-color: white;
+}
+.dropdown-control {
+  width: 90%;
+}
+.dropDown-data-item {
+  color: rgb(121, 122, 124);
+  padding-left: 25px;
+  cursor: pointer;
+  display: block;
+  font-family: SofiaPro-Regular;
+  font-size: 16px;
+}
+
+.errorMsj {
+  color: red;
+  position: absolute;
+  bottom: -40px;
+  right: 30px;
+}
 @keyframes line-scale {
   from {
     transform: scaleX(0);
@@ -998,6 +1358,10 @@
     padding-left: 2%;
     padding-right: 2%;
   }
+  .stepper-container {
+    padding-left: 2%;
+    padding-right: 2%;
+  }
 }
 
 @media only screen and (max-width: 1200px) {
@@ -1010,6 +1374,10 @@
     padding-right: 10%;
   }
   .dj-profile-container {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+  .stepper-container {
     padding-left: 10%;
     padding-right: 10%;
   }

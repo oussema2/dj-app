@@ -16,7 +16,9 @@ const Header = () => {
           <Link className="link-no-style" to={"/login"}>
             <p className="litleTitle">LOG IN</p>
           </Link>
-          <button className="button-primary">LIST YOUR SERVICE</button>
+          <Link to={"/dj-inscription"}>
+            <button className="button-primary">LIST YOUR SERVICE</button>
+          </Link>
         </div>
       </div>
     </div>

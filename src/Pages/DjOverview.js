@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import ServicePuce from "../Atomes/ServicePuce";
 import Star from "../Atomes/Star";
 import EventCartProfile from "../Molecules/EventCartProfile";
@@ -105,7 +106,11 @@ const DjOverview = () => {
           </div>
         </div>
         <div className="dj-request-quote">
-          <button className="request-free-quote-btn">REQUEST FREE QUOTE</button>
+          <Link to={"/reserve_dj/5"}>
+            <button className="request-free-quote-btn">
+              REQUEST FREE QUOTE
+            </button>
+          </Link>
         </div>
       </div>
 
