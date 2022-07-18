@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, useLocation, useParams } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "../Molecules/Header";
 import Home from "../Pages/Home";
 const ClientLayout = () => {

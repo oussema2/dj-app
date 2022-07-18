@@ -5,7 +5,6 @@ import ReactLoading from "react-loading";
 import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const arr = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   const [djs, setDjs] = useState([]);
   const [search, setSearch] = useState({ dj: null, state: null });
   const [errMessage, setErrMessage] = useState(false);

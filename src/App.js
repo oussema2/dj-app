@@ -1,7 +1,7 @@
-import axios from "axios";
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Footer from "./Molecules/Footer";
 import AllDj from "./Pages/AllDj";
 import DjIncription from "./Pages/DjIncription";
 import DjOverview from "./Pages/DjOverview";
@@ -52,13 +52,15 @@ function App() {
         .then((result) => {
           const response = JSON.parse(result);
           console.log(response);
-          dispatchConnect({
-            type: "LITTLE_LOGIN",
-            payload: {
-              token: localStorage.getItem("token"),
-              djData: response.dj,
-            },
-          });
+          if (response.status === 200) {
+            dispatchConnect({
+              type: "LITTLE_LOGIN",
+              payload: {
+                token: localStorage.getItem("token"),
+                djData: response.dj,
+              },
+            });
+          }
         })
         .catch((error) => console.log("error", error));
     })();
@@ -91,6 +93,7 @@ function App() {
             </Route>
           </Route>
         </Routes>
+        <Footer />
       </div>
     </ConnectContext.Provider>
   );

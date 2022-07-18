@@ -1696,6 +1696,29 @@ input[type="date"]::-webkit-clear-button {
 .dj-images-item:hover {
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
+
+.footerContainer {
+  padding: 30px;
+  background-color: rgb(8, 8, 58);
+  color: white;
+}
+.proj-title-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.title-foorer {
+  font-size: 32px;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  font-family: SofiaPro-Regular;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+.title-foorer:hover {
+  text-decoration: underline;
+}
 @keyframes line-scale {
   from {
     transform: scaleX(0);
@@ -1808,5 +1831,21 @@ input[type="date"]::-webkit-clear-button {
   }
   .litleTitle {
     font-size: 16px;
+  }
+  .login-form-container {
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+  .login-form {
+    padding: 25px;
+  }
+  .reserve-dj-top-title {
+    font-size: 32px;
+  }
+  .reserve-dj-top-description {
+    font-size: 18px;
+  }
+  .show-password-icon {
+    right: 5%;
   }
 }
