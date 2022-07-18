@@ -27,7 +27,11 @@ const DropDownData = (props) => {
   useOutsideAlerter(wrapperRef);
 
   return (
-    <div style={{ position: "relative" }} className="dropDownData-container">
+    <div
+      id={props.id}
+      style={{ position: "relative" }}
+      className="dropDownData-container"
+    >
       <p className="dropDown-title">{props.label}</p>
       <div ref={wrapperRef} className="dropdown-control">
         <div

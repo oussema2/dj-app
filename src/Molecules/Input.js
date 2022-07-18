@@ -8,6 +8,7 @@ const Input = (props) => {
       <div className="dropdown-control">
         <div className="dropDown-container">
           <input
+            id={props.id}
             placeholder={props.placeHolder}
             type={props.type}
             className="inputEl"

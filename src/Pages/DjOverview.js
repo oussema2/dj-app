@@ -1,18 +1,21 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import ServicePuce from "../Atomes/ServicePuce";
 import Star from "../Atomes/Star";
 import EventCartProfile from "../Molecules/EventCartProfile";
 
-const DjOverview = () => {
+const DjOverview = (props) => {
   const [aboutExpanded, setAboutExpanded] = useState(false);
+  console.log(props);
+  const [dj] = useOutletContext();
+  console.log(dj.upcomingPartys);
   return (
     <div>
       <div className="dj-overview-description-container">
         <div className="dj-overview-profile">
-          <p className="dj-name-text">Silver Lining Entertainment</p>
+          <p className="dj-name-text">{dj.businessName}</p>
           <p className="dj-coordination">
-            DJ from Hoboken, NJ Will travel up to 120 miles
+            DJ from {dj.state}, Will travel up to 120 miles
           </p>
         </div>
         <div className="dj-overview-achievment">
@@ -31,7 +34,8 @@ const DjOverview = () => {
           <div className="verified-booking">
             <div className="icon-verified"></div>
             <p className="achievement-text">
-              <b>261</b> Verified Bookings
+              <b>{dj.previousPartys?.length + dj.upcomingPartys?.length}</b>{" "}
+              Verified Bookings
             </p>
           </div>
           <div className="verified-booking">
@@ -101,12 +105,12 @@ const DjOverview = () => {
           <div className="verified-booking">
             <div className="icon-tarif"></div>
             <p className="achievement-text">
-              Starting at <b>$300 per event</b>
+              Starting at <b>${dj.tarif} per event</b>
             </p>
           </div>
         </div>
         <div className="dj-request-quote">
-          <Link to={"/reserve_dj/5"}>
+          <Link to={`/reserve_dj/${dj.businessName}/step/1`}>
             <button className="request-free-quote-btn">
               REQUEST FREE QUOTE
             </button>
@@ -129,24 +133,7 @@ const DjOverview = () => {
                 : "about-dj-text-minimise"
             }`}
           >
-            Music that makes all your events shimmer with a Silver Lining.... We
-            pride ourselves in mixing your music tastes, the feel of the crowd,
-            and the ambiance of your venue to create the ideal party atmosphere
-            for any occasion. With complete customization and flawless execution
-            we will make all your events shimmer with a Silver Lining. Kelly
-            Silver, founder of Silver Lining Entertainment, is the resident DJ
-            at the Tamron Hall show on ABC TV. Originally from London, UK, Kelly
-            has performed both nationally and internationally as a DJ/Emcee and
-            vocalist. Kelly has performed for Valentino at Fashion week, the
-            Skinny Cow North East tour, and the La Di Da Launch, as well as for
-            many celebrities at venues such as, the Grand Hyatt, Maritime Hotel,
-            Salmagundi Art Gallery and Chelsea Piers. We DJ/Emcee at weddings
-            from the most elegant and intimate to the lavish affair, from the
-            ceremony through the reception. We offer String Quartets, Pianists,
-            guitarists, vocalists and other musicians for your ceremony,
-            cocktail or dinner hour. Dance floor and up lighting, Video/Photo
-            display Screens and more. Our Mitzvah packages include Lighting,
-            Screens, Give-aways, Karaoke, Photo Booths and more.
+            {dj.bio}
           </p>
           <p
             className="view-all-less"
@@ -181,14 +168,9 @@ const DjOverview = () => {
           </p>
         </div>
         <div className="dj-services-rightSide">
-          <ServicePuce title="RADIO DJ" />
-          <ServicePuce title="MOBILE DJ" />
-          <ServicePuce title="DJ" /> <ServicePuce title="HOUSE DJ" />
-          <ServicePuce title="EMCEE" /> <ServicePuce title="KARAOKE MCH NRM" />
-          <ServicePuce title=" DJ" />
-          <ServicePuce title="MOBILE " />
-          <ServicePuce title="DJ" /> <ServicePuce title="HOUSE DJ" />
-          <ServicePuce title="EMCEE" /> <ServicePuce title="KARAOKE DJ" />
+          {dj.otherTypes?.map((type) => (
+            <ServicePuce title={type} />
+          ))}
         </div>
       </div>
 
@@ -200,16 +182,26 @@ const DjOverview = () => {
             <div className="icon-verified"></div>: The Bash Verified Bookings
           </p>
         </div>
-        <div className="dj-bookings-rightSide">
-          <p className="dj-bookings-upcoming-title">Upcoming Events</p>
-          <div className="eventCarte-upcoming-container">
-            <EventCartProfile />
-            <EventCartProfile />
-            <EventCartProfile />
-            <EventCartProfile /> <EventCartProfile />
-            <EventCartProfile />
-            <EventCartProfile />
-            <EventCartProfile />
+        <div className="event-upcoming-previous-container">
+          <div style={{ marginBottom: 50 }} className="dj-bookings-rightSide">
+            <p className="dj-bookings-upcoming-title">Upcoming Events</p>
+            <div className="eventCarte-upcoming-container">
+              {dj.upcomingPartys?.length > 0 ? (
+                dj.upcomingPartys.map((pr) => <EventCartProfile party={pr} />)
+              ) : (
+                <p className="no-event-in-overview">No Event YEt</p>
+              )}
+            </div>
+          </div>
+          <div style={{ marginBottom: 50 }} className="dj-bookings-rightSide">
+            <p className="dj-bookings-upcoming-title">Previous Events</p>
+            <div className="eventCarte-upcoming-container">
+              {dj.upcomingPartys?.length > 0 ? (
+                dj.previousPartys.map((pr) => <EventCartProfile party={pr} />)
+              ) : (
+                <p className="no-event-in-overview">No Event YEt</p>
+              )}
+            </div>
           </div>
         </div>
       </div>

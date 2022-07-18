@@ -1,8 +1,38 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import DJCarteHome from "../Molecules/DJCarteHome";
+import ReactLoading from "react-loading";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const arr = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+  const [djs, setDjs] = useState([]);
+  const [search, setSearch] = useState({ dj: null, state: null });
+  const [errMessage, setErrMessage] = useState(false);
+  const navigate = useNavigate();
+  useEffect(() => {
+    (async () => {
+      const responseDjs = await axios.get(
+        "http://localhost:5000/dj/getLast10DJ"
+      );
+
+      console.log(responseDjs);
+      if (responseDjs.data.status === 200) {
+        setDjs(responseDjs.data.djs);
+      }
+    })();
+  }, []);
+  const submitSearch = () => {
+    if (!search.dj && !search.state) {
+      setErrMessage(true);
+      return;
+    }
+    navigate(
+      `/djs/search/${search.dj ? search.dj : "fill"}/${
+        search.state ? search.state : "fill"
+      }`
+    );
+  };
   return (
     <div>
       <div className="top-home">
@@ -16,12 +46,17 @@ const Home = () => {
                 </label>
                 <div className="top-home-inputEL-wrapper">
                   <input
-                    name="service"
+                    onChange={(e) => {
+                      setErrMessage(false);
+                      setSearch({ ...search, dj: e.target.value });
+                    }}
+                    name="dj"
                     type={"text"}
                     className="top-home-input"
-                    placeholder={"Band ,DJ..."}
+                    placeholder={"DANCE CLUB DJ ,HOUSE DJ etc..."}
                   />
                 </div>
+                {errMessage ? <p className="errorMsj">Empty !!!</p> : null}
               </div>
             </div>
             <div className="top-home-inputWrapper">
@@ -31,15 +66,28 @@ const Home = () => {
                 </label>
                 <div className="top-home-inputEL-wrapper">
                   <input
-                    name="service"
+                    onChange={(e) => {
+                      setErrMessage(false);
+                      setSearch({ ...search, state: e.target.value });
+                    }}
+                    name="state"
                     type={"text"}
                     className="top-home-input"
-                    placeholder={"City, ST or Province"}
+                    placeholder={"City, State"}
                   />
                 </div>
+                {errMessage ? <p className="errorMsj">Empty !!!</p> : null}
               </div>
             </div>
-            <button className="top-home-searchBtn">SEARCH</button>
+            {/* <Link to={"/djs/search/:dj/:state"}> */}
+            <button
+              type={"button"}
+              onClick={submitSearch}
+              className="top-home-searchBtn"
+            >
+              SEARCH
+            </button>
+            {/* </Link> */}
           </form>
         </div>
       </div>
@@ -107,7 +155,10 @@ const Home = () => {
         <div className="djSide-top">
           <p className="djSide-top-title">Top Djs :</p>
           <div className="djSide-top-seeMore">
-            <p className="djSide-top-seeMore-text"> See All Djs</p>
+            <Link to={"/djs/all"}>
+              {" "}
+              <p className="djSide-top-seeMore-text"> See All Djs</p>
+            </Link>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="-6 -9 24 24"
@@ -123,9 +174,18 @@ const Home = () => {
           </div>
         </div>
         <div className="djSide-djList">
-          {arr.map((el) => (
-            <DJCarteHome />
-          ))}
+          {djs ? (
+            djs.map((el) => <DJCarteHome dj={el} />)
+          ) : (
+            <div className="loaderContainer">
+              <ReactLoading
+                type={"bubbles"}
+                color={"green"}
+                height={500}
+                width={250}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>

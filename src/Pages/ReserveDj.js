@@ -1,17 +1,11 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import React from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 const ReserveDj = () => {
   let navigate = useNavigate();
   const location = useLocation();
   const currentStep = Number(location.pathname.split("/")[4]);
 
-  const navigatePrev = () => {
-    navigate(`step/${currentStep - 1}`);
-  };
-  const navigateNext = () => {
-    navigate(`step/${currentStep + 1}`);
-  };
   return (
     <div>
       <div className="reserve-dj-top">

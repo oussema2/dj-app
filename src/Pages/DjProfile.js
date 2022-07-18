@@ -1,57 +1,89 @@
-import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
+import ReactLoading from "react-loading";
 
 const DjProfile = () => {
   const [currentSide, setCurrentSide] = useState("overview");
+  const params = useParams();
+  const location = useLocation();
+  console.log(location.pathname.includes("photos"));
+  const [dj, setDj] = useState({});
+  useEffect(() => {
+    (async () => {
+      const response = await axios.get(
+        `http://localhost:5000/dj/getDjByBussinessName/${params.id}`
+      );
+      console.log(response);
+      if (response.data.status === 200) {
+        setDj(response.data.dj);
+      }
+    })();
+  }, []);
+
   return (
     <div className="dj-profile-container">
-      <div className="dj-profile-picture">
-        <div className="dj-profile-picture-leftSide">
-          <div className="dj-profile-picture-mainPic-wrapper">
-            <img
-              className="dj-profile-picture-mainpic"
-              alt="test1"
-              src={
-                "//media-api.xogrp.com/images/d5047862-fdad-4b86-9d1f-05f0b67c69fc~rs_360.h.fit"
-              }
-            />
-          </div>
+      {location.pathname.includes("photos") ? null : (
+        <div>
+          {" "}
+          {dj.pictures ? (
+            <div className="dj-profile-picture">
+              <div className="dj-profile-picture-leftSide">
+                <div className="dj-profile-picture-mainPic-wrapper">
+                  <img
+                    className="dj-profile-picture-mainpic"
+                    alt="test1"
+                    src={`http://localhost:5000/djImages/${dj?._id}/${dj?.profilePicture}`}
+                  />
+                </div>
+              </div>
+              <div className="dj-profile-picture-rightSide">
+                <div className="dj-profile-picture-rightSide-leftSide">
+                  {dj?.pictures[1] ? (
+                    <img
+                      className="dj-profile-secondary-pic"
+                      alt="test2"
+                      src={`http://localhost:5000/djImages/${dj?._id}/${dj?.pictures[1]}`}
+                    />
+                  ) : null}{" "}
+                  {dj?.pictures[2] ? (
+                    <img
+                      className="dj-profile-secondary-pic"
+                      alt="test3"
+                      src={`http://localhost:5000/djImages/${dj?._id}/${dj?.pictures[2]}`}
+                    />
+                  ) : null}{" "}
+                </div>
+                <div className="dj-profile-picture-rightSide-rightSide">
+                  {dj?.pictures[3] ? (
+                    <img
+                      className="dj-profile-secondary-pic"
+                      alt="test4"
+                      src={`http://localhost:5000/djImages/${dj?._id}/${dj?.pictures[3]}`}
+                    />
+                  ) : null}
+                  {dj?.pictures[4] ? (
+                    <img
+                      className="dj-profile-secondary-pic"
+                      alt="test5"
+                      src={`http://localhost:5000/djImages/${dj?._id}/${dj?.pictures[4]}`}
+                    />
+                  ) : null}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="loaderContainer">
+              <ReactLoading
+                type={"bubbles"}
+                color={"green"}
+                height={500}
+                width={250}
+              />
+            </div>
+          )}
         </div>
-        <div className="dj-profile-picture-rightSide">
-          <div className="dj-profile-picture-rightSide-leftSide">
-            <img
-              className="dj-profile-secondary-pic"
-              alt="test2"
-              src={
-                "//media-api.xogrp.com/images/d5047862-fdad-4b86-9d1f-05f0b67c69fc~rs_360.h.fit"
-              }
-            />{" "}
-            <img
-              className="dj-profile-secondary-pic"
-              alt="test3"
-              src={
-                "//media-api.xogrp.com/images/d5047862-fdad-4b86-9d1f-05f0b67c69fc~rs_360.h.fit"
-              }
-            />{" "}
-          </div>
-          <div className="dj-profile-picture-rightSide-rightSide">
-            <img
-              className="dj-profile-secondary-pic"
-              alt="test4"
-              src={
-                "//media-api.xogrp.com/images/d5047862-fdad-4b86-9d1f-05f0b67c69fc~rs_360.h.fit"
-              }
-            />{" "}
-            <img
-              className="dj-profile-secondary-pic"
-              alt="test5"
-              src={
-                "//media-api.xogrp.com/images/d5047862-fdad-4b86-9d1f-05f0b67c69fc~rs_360.h.fit"
-              }
-            />
-          </div>
-        </div>
-      </div>
+      )}
       <div
         className={`profileSides-header ${
           currentSide === "overview"
@@ -78,19 +110,14 @@ const DjProfile = () => {
             className="profileSides-button"
             onClick={() => setCurrentSide("photo")}
           >
-            Photos <span className="number-ofUnits"> (10)</span>
+            Photos{" "}
+            <span className="number-ofUnits"> ({dj.pictures?.length})</span>
           </button>
         </Link>
 
-        <button
-          className="profileSides-button"
-          onClick={() => setCurrentSide("audio")}
-        >
-          Videos & Audio <span className="number-ofUnits"> (6)</span>
-        </button>
         {/* <div className="selected-side" /> */}
       </div>
-      <Outlet />
+      <Outlet context={[dj]} />
     </div>
   );
 };
