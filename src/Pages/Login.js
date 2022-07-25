@@ -1,6 +1,6 @@
 import { Alert, Snackbar } from "@mui/material";
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ConnectContext } from "../StateManagement/ConnectContext/ConnectContext";
 
@@ -9,9 +9,7 @@ const Login = () => {
   const [snack, setSnack] = useState({ open: false, message: "" });
   const connectContext = useContext(ConnectContext);
   const navigate = useNavigate();
-  useEffect(() => {
-    console.log(connectContext.connectState.connected);
-  }, []);
+
   if (connectContext.connectState.connected) {
     navigate("/djs");
   }
@@ -43,7 +41,10 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div
+      style={{ backgroundColor: "#f8f8f8" }}
+      className="dj-partys-page-container"
+    >
       <div className="page-title">
         <p className="title-content">Login</p>
       </div>

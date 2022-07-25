@@ -24,6 +24,7 @@ const guestsNumbering = [
 const Step1 = () => {
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
+  const [loading, setLoading] = useState(false);
   const params = useParams();
   const [partyData, setPartyData] = useState({ dj: params.id });
   const [errorInput, setErrorInput] = useState("");
@@ -67,7 +68,7 @@ const Step1 = () => {
         setDj(response.data.dj);
       }
     })();
-  }, []);
+  }, [params.id]);
 
   async function getCities() {
     setPartyData({ ...partyData, state: arguments[1] });
@@ -182,19 +183,21 @@ const Step1 = () => {
     prevData[key] = value;
     setPartyData(prevData);
   };
-  const submiForm = async (e) => {
-    e.preventDefault();
+  const submiForm = async () => {
+    // e.preventDefault();
     console.log(partyData);
     const isFormValid = verifForm();
     console.log(isFormValid);
     if (isFormValid) {
-      setPartyData({ ...partyData, dj: dj._id });
+      console.log("entered");
+      setLoading(true);
       const addPArtyResponse = await axios.post(
         "http://localhost:5000/party/addParty",
-        partyData
+        { ...partyData, dj: dj._id }
       );
-      console.log(addPArtyResponse);
+      console.log("i'm heere ==============>");
       if (addPArtyResponse.data.status === 200) {
+        setLoading(false);
         console.log("entered");
         setSnack({
           open: true,
@@ -210,7 +213,7 @@ const Step1 = () => {
   return (
     <div className="step1-top-form">
       {dj._id ? (
-        <form onSubmit={(e) => submiForm(e)}>
+        <form>
           <div className="step1-top-inputs">
             <div className="dj-container-reserve">
               <div className="reserve-step1-youve-select">YOU'VE SELECTED</div>
@@ -421,13 +424,25 @@ const Step1 = () => {
               />
             </div>
           </div>
-          <div className="btns-stepper-container">
-            <input
-              type={"submit"}
-              className="reserve-stepper-nextBtn"
-              value={"SUBMIT"}
-            />
-          </div>
+          {loading === true ? (
+            <div className="loaderContainer">
+              <ReactLoading
+                type={"bubbles"}
+                color={"green"}
+                height={250}
+                width={250}
+              />
+            </div>
+          ) : (
+            <div className="btns-stepper-container">
+              <input
+                onClick={submiForm}
+                type={"button"}
+                className="reserve-stepper-nextBtn"
+                value={"SUBMIT"}
+              />
+            </div>
+          )}
         </form>
       ) : (
         <div className="loaderContainer">

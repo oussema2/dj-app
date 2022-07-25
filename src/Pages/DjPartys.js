@@ -1,12 +1,10 @@
 import { Alert, Snackbar } from "@mui/material";
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import PartyCard from "../Molecules/PartyCard";
-import { ConnectContext } from "../StateManagement/ConnectContext/ConnectContext";
 
 const DjPartys = () => {
-  const { connectState, dispatchConnect } = useContext(ConnectContext);
   const [snack, setSnack] = useState({ open: false, message: "" });
   const navigate = useNavigate();
   const params = useParams();
@@ -83,7 +81,7 @@ const DjPartys = () => {
     }
   };
   return (
-    <div>
+    <div className="dj-partys-page-container">
       {" "}
       <div className="inscri-dj-top">
         <h1 className="reserve-dj-top-title">

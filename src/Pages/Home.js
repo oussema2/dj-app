@@ -154,7 +154,7 @@ const Home = () => {
         <div className="djSide-top">
           <p className="djSide-top-title">Top Djs :</p>
           <div className="djSide-top-seeMore">
-            <Link to={"/djs/all"}>
+            <Link className="link-no-style" to={"/djs/all"}>
               {" "}
               <p className="djSide-top-seeMore-text"> See All Djs</p>
             </Link>
@@ -173,7 +173,7 @@ const Home = () => {
           </div>
         </div>
         <div className="djSide-djList">
-          {djs ? (
+          {djs.length > 0 ? (
             djs.map((el) => <DJCarteHome dj={el} />)
           ) : (
             <div className="loaderContainer">

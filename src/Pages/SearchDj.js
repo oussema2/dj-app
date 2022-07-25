@@ -24,17 +24,17 @@ const SearchDj = () => {
         <h1 className="reserve-dj-top-title">You Search For :</h1>
         {params.dj !== "fill" && params.state !== "fill" ? (
           <p className="reserve-dj-top-description">
-            {params.dj} in {params.state} : 10 DJ found
+            {params.dj} in {params.state} : {djs?.length} DJ found
           </p>
         ) : null}
         {params.dj === "fill" && params.state !== "fill" ? (
           <p className="reserve-dj-top-description">
-            DJ IN {params.state} : 10 DJ found
+            DJ IN {params.state} : {djs?.length} DJ found
           </p>
         ) : null}
         {params.dj !== "fill" && params.state === "fill" ? (
           <p className="reserve-dj-top-description">
-            {params.dj} : 10 DJ found
+            {params.dj} : {djs?.length} DJ found
           </p>
         ) : null}
       </div>

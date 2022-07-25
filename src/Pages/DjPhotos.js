@@ -7,11 +7,14 @@ const DjPhotos = () => {
   return (
     <div className="dj-pictures-side-container">
       {dj.pictures?.map((im) => (
-        <img
-          className="dj-images-item"
-          alt={im}
-          src={`http://localhost:5000/djImages/${dj?._id}/${im}`}
-        />
+        <div className="dj-photo-el-container">
+          {" "}
+          <img
+            className="dj-images-item"
+            alt={im}
+            src={`http://localhost:5000/djImages/${dj?._id}/${im}`}
+          />
+        </div>
       ))}
     </div>
   );

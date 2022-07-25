@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const PartyCard = ({ party, type, declineOffer, acceptOffer }) => {
   console.log(party);
@@ -30,7 +29,7 @@ const PartyCard = ({ party, type, declineOffer, acceptOffer }) => {
             <br></br>
             <p className="party-card-row ">
               <span className="party-card-title">Coordinations :</span>{" "}
-              <span className="party-card-subtitle">Phine Number</span> |{" "}
+              <span className="party-card-subtitle">Phone Number</span> |{" "}
               {party.phoneNumber} |{" "}
               <span className="party-card-subtitle">Email</span> | {party.email}
             </p>
